@@ -13,3 +13,7 @@
 3. **data_structure_training**
    - Описание: Реализация базовых структур данных (стек, очередь, односвязный и двусвязный списки) с тестами для практики и изучения их работы.
    - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/data_structure_training)
+
+4. **pytest_training**
+   - Описание: Репозиторий, содержащий примеры использования фреймворка pytest для тестирования. Включает базовые примеры тестирования методов класса, работы с фикстурами.
+   - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/pytest_training)
