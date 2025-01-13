@@ -8,4 +8,8 @@
 
 2. **classes**
    - Описание: директория `classes` содержит базовую реализацию множественного наследования и композиции
-   - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/func_utils)
+   - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/classes)
+
+3. **data_structure_training**
+   - Описание: Реализация базовых структур данных (стек, очередь, односвязный и двусвязный списки) с тестами для практики и изучения их работы.
+   - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/data_structure_training)
