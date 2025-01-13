@@ -1,4 +1,4 @@
-from pytest_traning.classes.teacher import Teacher
+from pytest_training.classes.teacher import Teacher
 
 class DisciplineTeacher(Teacher):
     def __init__(self, name, education, experience, discipline, job_title, teacher_id=None):
