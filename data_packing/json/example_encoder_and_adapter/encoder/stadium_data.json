@@ -1,0 +1,9 @@
+{
+  "reg_numbers": "ЦСК",
+  "sunroof": "Москва",
+  "radio": 15000,
+  "methods": [
+    "display_info",
+    "update_capacity"
+  ]
+}

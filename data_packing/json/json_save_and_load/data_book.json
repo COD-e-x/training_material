@@ -1,0 +1,13 @@
+{
+    "name": "book_name",
+    "autor": "autor_name",
+    "publication": 1975,
+    "genre": "movie",
+    "rating": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ]
+}

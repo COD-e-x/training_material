@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Larry",
+        "age": 25,
+        "position": "programmer",
+        "list_skills": [
+            "Python",
+            "Django"
+        ]
+    },
+    {
+        "name": "Anna",
+        "age": 28,
+        "position": "designer",
+        "list_skills": [
+            "Photoshop",
+            "Illustrator"
+        ]
+    }
+]

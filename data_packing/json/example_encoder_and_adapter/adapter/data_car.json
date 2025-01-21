@@ -1,0 +1,9 @@
+{
+  "reg_number": "oo100o rus",
+  "sunroof": true,
+  "radio": true,
+  "methods": [
+    "change_reg_number",
+    "radio_on"
+  ]
+}
