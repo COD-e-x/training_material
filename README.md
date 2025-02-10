@@ -7,7 +7,7 @@
    - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/func_utils)
 
 2. **classes**
-   - **Описание:** директория `classes` содержит базовую реализацию множественного наследования и композиции
+   - **Описание:** директория `classes` содержит базовую реализацию множественного наследования и композиции.
    - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/classes)
 
 3. **data_structure_training**
@@ -26,3 +26,7 @@
    *(На работу с Pickle было уделено меньше времени)*  
    - **Описание:** В этом разделе рассматриваются различные способы сериализации и десериализации данных с использованием форматов JSON и Pickle. 
    - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/data_packing)
+
+7. **Multithreading**  
+   - **Описание:** Продолжаю по мере возможности изучение темы многопоточность.
+   - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/multithreading)
