@@ -12,6 +12,7 @@ thr_list = []
 
 for i in range(3):
     thr = threading.Thread(target=get_data, args=(str(time.time()), 1), name=f'thr-{i}')
+    thr_list.append(thr)
     thr.start()
 
 for i in thr_list:

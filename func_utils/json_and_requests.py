@@ -35,6 +35,7 @@ def write_json(filename, data):
     try:
         with open(filename, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=2)
+        return f'Ошибка при открытии или записи в файл {filename}.'
     except OSError:
         return f'Ошибка при открытии или записи в файл {filename}.'
     except Exception as e:
