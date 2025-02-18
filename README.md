@@ -30,3 +30,7 @@
 7. **Multithreading**  
    - **Описание:** Продолжаю по мере возможности изучение темы многопоточность.
    - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/multithreading)
+
+8. **server_socket_http**
+   - **Описание:** Реализация серверного сокета для обработки HTTP-запросов, echo с поддержкой многопоточности.
+   - [Ссылка на проект](https://github.com/COD-e-x/training_material/tree/main/server_socket_http)
