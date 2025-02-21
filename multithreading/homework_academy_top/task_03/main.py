@@ -1,11 +1,15 @@
 from threading import Thread, Lock, Event, current_thread
+import threading
 import time
 
 print_lock = Lock()
+print_enumerate = Event()
+
 
 def find_max_or_min(numbers, find_max=True):
     """
-    Ищет и выводит максимальные или минимальные числа из списка, удаляя число из списка после вывода.
+    Ищет и выводит поочередно максимальное или минимальное числа из списка,
+    удаляя само число из списка после вывода.
 
     :param numbers: Список чисел.
     :param find_max: Если True ищет максимальные числа, иначе минимальные.
@@ -13,22 +17,13 @@ def find_max_or_min(numbers, find_max=True):
     if len(numbers) < 1:
         return print('Ошибка. Ведите хотя бы одно число.')
     new_numbers = list(numbers)
-    range_count = 0
-    if 1 <= len(new_numbers) < 5:
-        range_count = len(new_numbers)
-    elif len(new_numbers) >= 5:
-        range_count = 5
+    range_count = min(len(new_numbers), 5)
+    print_enumerate.wait()
     for i in range(range_count):
-        if find_max:
-            num = max(new_numbers)
-            with print_lock:
-                print(f'max: {num}')
-                time.sleep(1)
-        else:
-            num = min(new_numbers)
-            with print_lock:
-                print(f'min: {num}')
-                time.sleep(1)
+        num = max(new_numbers) if find_max else min(new_numbers)
+        with print_lock:
+            print(f'max: {num}') if find_max else print(f'min: {num}')
+            time.sleep(1)
         new_numbers.remove(num)
     with print_lock:
         print(f'Поток ({current_thread().name}) завершил свою работу.')
@@ -44,6 +39,11 @@ if __name__ == '__main__':
 
     max_thr.start()
     min_thr.start()
+
+    # Изначально выводит количество и список активных потоков
+    print_enumerate.set()
+    with print_lock:
+        print(f'active thread: {threading.active_count()},  enumerate: {threading.enumerate()}')
 
     max_thr.join()
     min_thr.join()

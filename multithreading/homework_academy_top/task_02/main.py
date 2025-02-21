@@ -2,10 +2,6 @@ from threading import Thread, Lock, Event, current_thread
 
 print_lock = Lock()
 
-# В этом и следующем задании решение противоречит принципу SRP.
-# Просто когда код писал они настолько были похожи, что решил реализовать так, для практики.
-# Так как прошлое выполнение было в разных функциях, хотел посмотреть на эту.
-
 def find_max_or_min(numbers, find_max=True):
     """
     Ищет и выводит максимальные или минимальные числа из списка, удаляя число из списка после вывода.
@@ -16,20 +12,11 @@ def find_max_or_min(numbers, find_max=True):
     if len(numbers) < 1:
         return print('Ошибка. Ведите хотя бы одно число.')
     new_numbers = list(numbers)
-    range_count = 0
-    if 1 <= len(new_numbers) < 5:
-        range_count = len(new_numbers)
-    elif len(new_numbers) >= 5:
-        range_count = 5
+    range_count = min(len(new_numbers), 5)
     for i in range(range_count):
-        if find_max:
-            num = max(new_numbers)
-            with print_lock:
-                print(f'max: {num}')
-        else:
-            num = min(new_numbers)
-            with print_lock:
-                print(f'min: {num}')
+        num = max(new_numbers) if find_max else min(new_numbers)
+        with print_lock:
+            print(f'max: {num}') if find_max else print(f'min: {num}')
         new_numbers.remove(num)
     with print_lock:
         print(f'Поток ({current_thread().name}) завершил свою работу.')
