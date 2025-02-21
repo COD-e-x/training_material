@@ -1,10 +1,7 @@
 from threading import Thread, Lock, Event, current_thread
+import time
 
 print_lock = Lock()
-
-# В этом и следующем задании решение противоречит принципу SRP.
-# Просто когда код писал они настолько были похожи, что решил реализовать так, для практики.
-# Так как прошлое выполнение было в разных функциях, хотел посмотреть на эту.
 
 def find_max_or_min(numbers, find_max=True):
     """
@@ -12,7 +9,7 @@ def find_max_or_min(numbers, find_max=True):
 
     :param numbers: Список чисел.
     :param find_max: Если True ищет максимальные числа, иначе минимальные.
-    """
+    # """
     if len(numbers) < 1:
         return print('Ошибка. Ведите хотя бы одно число.')
     new_numbers = list(numbers)
@@ -26,10 +23,12 @@ def find_max_or_min(numbers, find_max=True):
             num = max(new_numbers)
             with print_lock:
                 print(f'max: {num}')
+                time.sleep(1)
         else:
             num = min(new_numbers)
             with print_lock:
                 print(f'min: {num}')
+                time.sleep(1)
         new_numbers.remove(num)
     with print_lock:
         print(f'Поток ({current_thread().name}) завершил свою работу.')
@@ -37,7 +36,9 @@ def find_max_or_min(numbers, find_max=True):
 
 if __name__ == '__main__':
     text = 'Введите числа через пробел (например: 34 2 234 21 45 ...): '
+
     values_list = list(map(int, input(text).split())) or [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+
     max_thr = Thread(target=find_max_or_min, args=(values_list, True), name='max thr')
     min_thr = Thread(target=find_max_or_min, args=(values_list, False), name='min thr')
 
