@@ -21,7 +21,7 @@ class ManagerProduct:
         """Инициализирует списком продуктов."""
         self.products = []
 
-    def add_product(self, name: Product, price: Product):
+    def add_product(self, name: str, price: (int, float)):
         """
         Добавляет новый продукт в коллекцию, проверяя типы данных для
         имени и цены продукта.
@@ -89,8 +89,11 @@ class ManagerProduct:
         """Сохраняет список продуктов и общую стоимость в JSON файл."""
         product_data = [{'name': product.name, 'price': product.price} for product in self.products]
         product_data.append({'total_price': self.calculate_total_price()})
-        with open(filename, 'w', encoding='utf-8') as file:
-            json.dump(product_data, file, indent=4, ensure_ascii=False)
+        try:
+            with open(filename, 'w', encoding='utf-8') as file:
+                json.dump(product_data, file, indent=4, ensure_ascii=False)
+        except OSError as e:
+            return print(f'Указан неверный путь к файлу. {e}')
 
     def load_to_json(self, filename):
         """Загружает данные продуктов из JSON файла в список продуктов."""
@@ -104,7 +107,8 @@ class ManagerProduct:
             print(f'Ошибка в формате JSON! {e}')
 
     def __str__(self):
-        return f"Продукты: {[(product.name, product.price) for product in self.products]}"
+        return (f'Продукты: '
+                f'{''.join(f'\nПродукт: {product.name}, стоимость: {product.price}' for product in self.products)}')
 
     def __repr__(self):
         return repr(self.products)
@@ -117,6 +121,7 @@ if __name__ == '__main__':
     manager.add_product('Smartphone', 500)
     manager.remove_product('Smartphone')
     print(repr(manager))
+    print(manager)
 
     # print()
     # # manager.sort_product('price')

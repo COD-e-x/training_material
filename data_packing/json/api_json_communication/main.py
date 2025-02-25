@@ -38,7 +38,25 @@ response = requests.get(url)
 if response.status_code == 200:
     repos = response.json()
     print(f'Количество репозиториев: {len(repos)}')
+    print(repos)
     for repo in repos:
         print(f'Репозиторий: {repo['name']}')
 else:
     print(f'Ошибка! Статус кода: {response.status_code}')
+
+print()
+# Можно создать запрос на создание репозитория в GitHub по Python-скрипту
+url = 'https://api.github.com/user/repos'
+headers = {
+    'Authorization': 'token ваш_токен',
+    'Content-Type': 'application/json'
+}
+data = {
+    'name': 'new-repo',
+    'private': False
+}
+response = requests.post(url, headers=headers, json=data)
+if response.status_code == 201:
+    print('Репозиторий создан')
+else:
+    print(f'Ошибка: {response.status_code}')

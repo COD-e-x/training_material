@@ -1,13 +1,13 @@
 [
     {
-        "name": "Smartphone",
-        "price": 500
-    },
-    {
         "name": "Tablet",
         "price": 300
     },
     {
-        "total_price": 800
+        "name": "Laptop",
+        "price": 1000
+    },
+    {
+        "total_price": 1300
     }
 ]

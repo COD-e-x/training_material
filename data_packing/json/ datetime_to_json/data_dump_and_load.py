@@ -38,7 +38,7 @@ def datetime_parser(dct):
 # Чтение данных из файла и десериализация
 try:
     with open('data.json', 'r', encoding='utf-8') as file:
-        # object_hook=datetime_parser - тут обратный процесс, когда необходима не строковый формат, а даты самой.
+        # object_hook=datetime_parser - тут обратный процесс, когда необходим не строковый формат, а даты самой.
         loaded_data = json.load(file, object_hook=datetime_parser)
     print('Данные успешно загружены из файла!')
     print(loaded_data)

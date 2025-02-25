@@ -4,11 +4,14 @@ information_book_dict = {
     'name': 'book_name',
     'autor': 'autor_name',
     'publication': 1975,
-    'genre': 'movie',
+    'genre': 'drama',
 }
 
-with open(r'./data_book.json', 'w', encoding='utf-8') as file:
-    json.dump(information_book_dict, file, indent=4, ensure_ascii=False)
+try:
+    with open(r'./data_book.json', 'w', encoding='utf-8') as file:
+        json.dump(information_book_dict, file, indent=4, ensure_ascii=False)
+except OSError as e:
+    print(f'Указан неверный путь к файлу. {e}')
 
 try:
     with open(r'./data_book.json', 'r', encoding='utf-8') as file:
