@@ -3,14 +3,16 @@
 реализовал для ознакомления магические методы __iter__(), __next__().
 """
 
+
 class QueueMenu:
     """Класс для реализации меню очереди."""
+
     def __init__(self, queue_obj):
         """Инициализирует меню класса очереди."""
         self.__queue = queue_obj
 
     def display_menu(self):
-        """Отображает меню операций для пользователя."""
+        """Отображает меню для пользователя."""
         print('\n--- Меню ---')
         print('0. Для повторного вывода меню')
         print('1. Добавить элемент в очередь')
@@ -39,7 +41,6 @@ class QueueMenu:
         else:
             print('Неверный выбор, попробуйте снова.')
 
-
     def add_item_queue(self):
         """Добавление элемента в очередь."""
         if not self.__queue.is_full():
@@ -63,14 +64,14 @@ class QueueMenu:
     def show_queue(self):
         """Выводит все элементы очереди в списке."""
         if self.__queue.is_empty():
-            print('Очередь пуста.')
-        else:
             print('Список данных в очереди:')
             print(list(self.__queue))
+        else:
+            print('Очередь пуста.')
 
     def is_empty_queue(self):
         """Проверка, пуста ли очередь."""
-        print('Очередь пуста.' if self.__queue.is_empty() else 'Очередь не пуста.')
+        print('Очередь не пуста.' if self.__queue.is_empty() else 'Очередь пуста.')
 
     def is_full_queue(self):
         """Проверка, полная ли очередь."""

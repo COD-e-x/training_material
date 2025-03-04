@@ -1,93 +1,103 @@
 class Node:
     """Класс для узла стека."""
 
-    def __init__(self, data, next_node=None):
-        """Инициализация стека."""
+    def __init__(self, data, next_node=True):
+        """Инициализация узла."""
         self.data = data
         self.next_node = next_node
 
 
-class Stack:
+class Steck:
     """Класс для реализации стека."""
 
     def __init__(self, stack_size=5, top=None):
         """Инициализация стека."""
         self.stack_size = stack_size
-        self.top = top  # через топ обращаемся к атрибутам ноды
+        self.top = top
 
     def push(self, data):
         """Добавление элемента в стек."""
         if self.size_stack() < self.stack_size:
             new_node = Node(data)
-            new_node.next_node = self.top  # та вершина которая была
-            self.top = new_node  # переназначаем вершину
+            new_node.next_node = self.top
+            self.top = new_node
         else:
-            print("Стек переполнен")
-            return "Стек переполнен"
+            return 'Стек переполнен.'
 
     def pop(self):
-        """Удаление элемента из стека."""
+        """Удаляет последний добавленный элемент стека."""
         if self.top:
             remove_last = self.top
             self.top = self.top.next_node
+            remove_last.next_node = None
             return remove_last.data
         else:
-            return "Стек пуст"
+            return 'Стек пуст.'
 
     def is_empty(self):
         """Проверяет, пуст ли стек."""
         if self.top:
             return False
-        else:
-            return True
+        return True
 
     def is_full(self):
         """Проверяет, заполнен ли стек."""
-        if self.stack_size == self.size_stack():
-            return True
-        else:
-            return False
+        return self.size_stack() == self.stack_size
 
     def clear_stack(self):
-        """Очищает стек"""
+        """Очищает стек."""
         while self.top:
             self.pop()
 
     def get_data(self, index):
         """Возвращает данные по индексу."""
-        counter = 0
-        stack_item = self.top
-        while stack_item:
+        counter = self.size_stack() - 1
+        current_node = self.top
+        while current_node:
             if counter == index:
-                return stack_item.data
-            stack_item = stack_item.next_node
-            counter += 1
+                return current_node.data
+            current_node = current_node.next_node
+            counter -= 1
         return f"Out of range"
 
     def size_stack(self):
         """Возвращает размер стека."""
         counter = 0
-        stack_item = self.top
-        while stack_item:
+        current_node = self.top
+        while current_node:
             counter += 1
-            stack_item = stack_item.next_node
-        return counter
-
-    def counter_int(self):
-        """Подсчитывает количество целых чисел в стеке."""
-        counter = 0
-        stack_item = self.top
-        while stack_item:
-            if isinstance(stack_item.data, int):
-                counter += 1
-            stack_item = stack_item.next_node
+            current_node = current_node.next_node
         return counter
 
 
-# stack = Stack()
-# stack.push(1)
-# stack.push("sta")
-# stack.push(2)
-# stack.push(2.5)
-# stack.push("sta")
-# print(stack.counter_int())
+if __name__ == '__main__':
+    size = 20
+    s = Steck(size)
+
+    # Заполняем стек.
+    for i in range(1, size + 1):
+        s.push(f'some data {i}')
+
+    # Получаем данные по индексу.
+    print(s.get_data(5))
+
+    # Очищаем стек.
+    s.clear_stack()
+
+    print(s.is_full())
+
+    # Снова заполняем стек.
+    for i in range(1, size + 1):
+        s.push(f'some data {i}')
+
+    print(s.is_full())
+    assert s.push('6') == 'Стек переполнен.'
+
+    # Удаляем по одному все элементы стека.
+    for i in range(1, size + 1):
+        s.pop()
+
+    assert s.pop() == 'Стек пуст.'
+    assert s.is_empty() == True
+
+    print(s.size_stack())

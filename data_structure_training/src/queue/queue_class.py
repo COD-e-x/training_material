@@ -1,70 +1,66 @@
 class Node:
-    """Класс, представляющий узел очереди."""
+    """Клас для реализации Узла."""
 
     def __init__(self, data):
-        """Инициализирует узел с заданными данными и ссылкой на следующий узел."""
+        """Инициализация узла."""
         self.data = data
         self.next_node = None
+
 
 class Queue:
     """Класс для реализации очереди."""
 
     def __init__(self, size=5):
-        """Инициализирует очередь с заданным максимальным размером.
-
-        Атрибуты:
-            head = для работы с первым узлом
-            tail = для работы с последним узлом
-            current_size = для подсчета количества корректных узлов
-        """
-        self.size = size
-        self.head = None
-        self.tail = None
-        self.current_size = 0
+        """Инициализация очереди."""
+        self.__size = size
+        self.__head = None
+        self.__tail = None
+        self.__current_size = 0
 
     def enqueue(self, data):
-        """Добавление элемента в очередь."""
-        if self.current_size < self.size:
+        """Добавляет элемент в очередь."""
+        if self.__current_size < self.__size:
             new_node = Node(data)
-            if not self.head:
-                self.head = new_node
-                self.tail = new_node
+            if not self.__tail:
+                self.__head = new_node
             else:
-                self.tail.next_node = new_node
-                self.tail = new_node
-            self.current_size += 1
+                self.__tail.next_node = new_node
+            self.__tail = new_node
+            self.__current_size += 1
+            return f'Данные ({data}) занесены в очередь.'
         else:
-            return None
+            return 'Очередь заполнена.'
 
     def dequeue(self):
-        """Удаление элемента из очереди."""
-        if self.head:
-            remove_node = self.head
-            self.head = self.head.next_node
-            self.current_size -= 1
+        """Удаляет элемент из очереди."""
+        if self.__head:
+            if not self.__head.next_node:
+                self.__tail = None
+            remove_node = self.__head
+            self.__head = self.__head.next_node
+            remove_node.next_node = None
+            self.__current_size -= 1
             return remove_node.data
-        return None
+        return 'Очередь пустая.'
 
     def is_empty(self):
         """Проверка, пуста ли очередь."""
-        return False if self.head else True
+        return self.__head
 
     def is_full(self):
-        """Проверка, полная ли очередь."""
-        return True if self.current_size == self.size else False
+        """Проверка, заполнена ли очередь."""
+        return self.__current_size == self.__size
 
     def show(self):
         """Выводит все элементы очереди."""
-        current_node = self.head
-        if not current_node:
-            return print('Очередь пуста.')
+        current_node = self.__head
         while current_node:
             print(current_node.data)
             current_node = current_node.next_node
 
     def __iter__(self):
         """Делаем очередь итерируемой."""
-        self.current_node = self.head
+        self.current_node = self.__head
         return self
 
     def __next__(self):
